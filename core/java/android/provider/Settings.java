@@ -5527,6 +5527,12 @@ public final class Settings {
         public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
 
         /**
+         * Force full screen for devices with cutout
+         * @hide
+         */
+        public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
+
+        /**
          * These are all public system settings
          *
          * @hide

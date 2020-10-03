@@ -351,6 +351,7 @@ import com.android.internal.util.FastPrintWriter;
 import com.android.internal.util.FrameworkStatsLog;
 import com.android.internal.util.MemInfoReader;
 import com.android.internal.util.Preconditions;
+import com.android.internal.util.xd.cutout.CutoutFullscreenController;
 import com.android.internal.util.function.DecFunction;
 import com.android.internal.util.function.HeptFunction;
 import com.android.internal.util.function.HexFunction;
@@ -1517,6 +1518,8 @@ public class ActivityManagerService extends IActivityManager.Stub
     final SwipeToScreenshotObserver mSwipeToScreenshotObserver;
     private boolean mIsSwipeToScreenshotEnabled;
 
+    private CutoutFullscreenController mCutoutFullscreenController;
+
     /**
      * Used to notify activity lifecycle events.
      */
@@ -2354,6 +2357,9 @@ public class ActivityManagerService extends IActivityManager.Stub
         mPendingStartActivityUids = new PendingStartActivityUids(mContext);
         mTraceErrorLogger = new TraceErrorLogger();
         mSwipeToScreenshotObserver = new SwipeToScreenshotObserver(mHandler, mContext);
+
+        // Force full screen for devices with cutout
+        mCutoutFullscreenController = new CutoutFullscreenController(mContext);
     }
 
     public void setSystemServiceManager(SystemServiceManager mgr) {
@@ -17262,6 +17268,13 @@ public class ActivityManagerService extends IActivityManager.Stub
     public boolean isSwipeToScreenshotGestureActive() {
         synchronized (this) {
             return mIsSwipeToScreenshotEnabled && SystemProperties.getBoolean("sys.android.screenshot", false);
+        }
+    }
+
+    @Override
+    public boolean shouldForceCutoutFullscreen(String packageName) {
+        synchronized (this) {
+            return mCutoutFullscreenController.shouldForceCutoutFullscreen(packageName);
         }
     }
 }
