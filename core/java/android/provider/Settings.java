@@ -16553,6 +16553,12 @@ public final class Settings {
         public static final String RESTRICTED_NETWORKING_MODE = "restricted_networking_mode";
 
         /**
+         * The amount of time in milliseconds before Wi-Fi is turned off
+         * @hide
+         */
+        public static final String WIFI_OFF_TIMEOUT = "wifi_off_timeout";
+
+        /**
          * The amount of time in milliseconds before bluetooth is turned off
          * @hide
          */
