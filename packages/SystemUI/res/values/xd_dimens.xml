@@ -41,4 +41,7 @@
     <dimen name="dialog_side_padding">24dp</dimen>
     <dimen name="dialog_bottom_padding">18dp</dimen>
 
+    <!-- QQS Brightness slider -->
+    <dimen name="quick_qs_brightness_margin_top">24dp</dimen>
+
 </resources>
