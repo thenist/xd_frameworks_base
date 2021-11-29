@@ -5528,6 +5528,35 @@ public final class Settings {
         public static final String FORCE_FULLSCREEN_CUTOUT_APPS = "force_full_screen_cutout_apps";
 
         /**
+         * Whether to show brightness slider in qs panel.
+         * Default 1.
+         * @hide
+         */
+        public static final String QS_SHOW_BRIGHTNESS = "qs_show_brightness";
+
+        /**
+         * Whether to show brightness slider in qqs panel.
+         * This setting is independent of QS_SHOW_BRIGHTNESS.
+         * Default 0.
+         * @hide
+         */
+        public static final String QQS_SHOW_BRIGHTNESS = "qqs_show_brightness";
+
+        /**
+         * Whether to show qs / qqs brightness slider at the bottom of the panel.
+         * Default 0.
+         * @hide
+         */
+        public static final String QS_BRIGHTNESS_POSITION_BOTTOM = "qs_brightness_position_bottom";
+
+        /**
+         * Whether to show auto brightness icon next to brightness slider.
+         * Default 0.
+         * @hide
+         */
+        public static final String QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button";
+
+        /**
          * @hide
          */
         public static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";

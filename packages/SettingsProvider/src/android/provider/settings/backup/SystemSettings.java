@@ -88,5 +88,9 @@ public class SystemSettings {
         Settings.System.KEYGAURD_MEDIA_ART,
         Settings.System.LOCKSCREEN_BATTERY_INFO,
         Settings.System.LOCKSCREEN_SMALL_CLOCK,
+        Settings.System.QS_SHOW_BRIGHTNESS,
+        Settings.System.QQS_SHOW_BRIGHTNESS,
+        Settings.System.QS_BRIGHTNESS_POSITION_BOTTOM,
+        Settings.System.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
     };
 }
