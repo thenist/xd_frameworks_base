@@ -201,16 +201,18 @@ public class NotificationShadeWindowViewController {
     public void setupExpandedStatusBar() {
         mStackScrollLayout = mView.findViewById(R.id.notification_stack_scroller);
 
+        final AmbientDisplayConfiguration configuration = new AmbientDisplayConfiguration(mView.getContext());
+        mDoubleTapEnabled = mSecureSettings.getIntForUser(
+            Settings.Secure.DOZE_DOUBLE_TAP_GESTURE, 1, UserHandle.USER_CURRENT) == 1;
+        mSingleTapEnabled = configuration.tapGestureEnabled(UserHandle.USER_CURRENT);
+
         final ContentObserver contentObserver = new ContentObserver(mHandler) {
             @Override
             public void onChange(boolean selfChange, Uri uri) {
-                final AmbientDisplayConfiguration configuration =
-                    new AmbientDisplayConfiguration(mView.getContext());
-
                 switch (uri.getLastPathSegment()) {
                     case Settings.Secure.DOZE_DOUBLE_TAP_GESTURE:
-                        mDoubleTapEnabled = configuration.doubleTapGestureEnabled(
-                                UserHandle.USER_CURRENT);
+                        mDoubleTapEnabled = Settings.Secure.getIntForUser(mView.getContext().getContentResolver(),
+                                Settings.Secure.DOZE_DOUBLE_TAP_GESTURE, 1, UserHandle.USER_CURRENT) == 1;
                         break;
                     case Settings.Secure.DOZE_TAP_SCREEN_GESTURE:
                         mSingleTapEnabled = configuration.tapGestureEnabled(UserHandle.USER_CURRENT);
@@ -220,13 +222,7 @@ public class NotificationShadeWindowViewController {
                             Settings.Secure.DOUBLE_TAP_TO_WAKE, 0, UserHandle.USER_CURRENT) == 1;
                         break;
                     case Settings.System.QS_SHOW_AUTO_BRIGHTNESS_BUTTON:
-                        if (mAutoBrightnessIcon != null) {
-                            mShowAutoBrightnessButton = mSystemSettings.getIntForUser(
-                                Settings.System.QS_SHOW_AUTO_BRIGHTNESS_BUTTON, 0,
-                                UserHandle.USER_CURRENT) == 1;
-                            mAutoBrightnessIcon.setVisibility(mShowAutoBrightnessButton
-                                    ? View.VISIBLE : View.GONE);
-                        }
+                        updateAutoBrightnessIconVisibility();
                         break;
                 }
             }
@@ -242,6 +238,7 @@ public class NotificationShadeWindowViewController {
             Settings.Secure.DOUBLE_TAP_TO_WAKE,
             contentObserver, UserHandle.USER_ALL);
         if (mAutoBrightnessConfigEnabled) {
+            updateAutoBrightnessIconVisibility();
             mSystemSettings.registerContentObserverForUser(
                 Settings.System.QS_SHOW_AUTO_BRIGHTNESS_BUTTON,
                 contentObserver, UserHandle.USER_ALL);
@@ -585,6 +582,16 @@ public class NotificationShadeWindowViewController {
         }
         if (mDragDownHelper != null) {
             mDragDownHelper.updateDoubleTapToSleep(isDoubleTapSbEnabled);
+        }
+    }
+
+    private void updateAutoBrightnessIconVisibility() {
+        if (mAutoBrightnessIcon != null) {
+            mShowAutoBrightnessButton = mSystemSettings.getIntForUser(
+                Settings.System.QS_SHOW_AUTO_BRIGHTNESS_BUTTON, 0,
+                UserHandle.USER_CURRENT) == 1;
+            mAutoBrightnessIcon.setVisibility(mShowAutoBrightnessButton
+                    ? View.VISIBLE : View.GONE);
         }
     }
 }
