@@ -107,6 +107,7 @@ import com.android.systemui.statusbar.policy.NetworkController;
 import com.android.systemui.statusbar.policy.RemoteInputQuickSettingsDisabler;
 import com.android.systemui.statusbar.policy.UserInfoControllerImpl;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
+import com.android.systemui.statusbar.policy.SecureLockscreenQSDisabler;
 import com.android.systemui.tuner.TunerService;
 import com.android.systemui.volume.VolumeComponent;
 import com.android.systemui.wmshell.BubblesManager;
@@ -230,7 +231,8 @@ public interface StatusBarGooglePhoneModule {
             SmartSpaceController smartSpaceController,
             WallpaperNotifier wallpaperNotifier,
             Optional<ReverseChargingViewController> reverseChargingController,
-            Lazy<Optional<NotificationVoiceReplyClient>> notificationVoiceReplyClient) {
+            Lazy<Optional<NotificationVoiceReplyClient>> notificationVoiceReplyClient,
+            SecureLockscreenQSDisabler secureLockscreenQSDisabler) {
         return new StatusBarGoogle(
                 context, notificationsController, lightBarController, autoHideController, keyguardUpdateMonitor,
                 signalPolicy, pulseExpansionHandler, notificationWakeUpCoordinator, keyguardBypassController,
@@ -254,6 +256,7 @@ public interface StatusBarGooglePhoneModule {
                 brightnessSliderFactory, chargingRippleAnimationController, ongoingCallController, animationScheduler,
                 locationPublisher, statusBarIconController, lockscreenShadeTransitionController, featureFlags,
                 keyguardUnlockAnimationController, unlockedScreenOffAnimationController, startingSurfaceOptional,
-                smartSpaceController, wallpaperNotifier, reverseChargingController, notificationVoiceReplyClient);
+                smartSpaceController, wallpaperNotifier, reverseChargingController, notificationVoiceReplyClient,
+                secureLockscreenQSDisabler);
     }
 }
