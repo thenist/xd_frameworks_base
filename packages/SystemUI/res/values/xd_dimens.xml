@@ -34,9 +34,6 @@
     <!-- Margin on the right side of the center clock -->
     <dimen name="status_bar_center_clock_padding_end">0dp</dimen>
 
-    <!-- QQS Brightness slider -->
-    <dimen name="quick_qs_brightness_margin_top">24dp</dimen>
-
     <!-- Media output -->
     <dimen name="dialog_button_vertical_inset">6dp</dimen>
     <dimen name="dialog_button_horizontal_padding">16dp</dimen>
