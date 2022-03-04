@@ -71,7 +71,7 @@ public class QuickQSPanel extends QSPanel {
                 lp.topMargin = getResources().getDimensionPixelSize(R.dimen.qs_brightness_margin_top) / 2;
                 lp.bottomMargin = getResources().getDimensionPixelSize(R.dimen.qs_brightness_margin_bottom) / 2;
             } else {
-                lp.topMargin = getResources().getDimensionPixelSize(R.dimen.qs_tile_margin_vertical);
+                lp.topMargin = getResources().getDimensionPixelSize(R.dimen.quick_qs_brightness_margin_top);
                 lp.bottomMargin = 0;
             }
             mBrightnessView.setLayoutParams(lp);
